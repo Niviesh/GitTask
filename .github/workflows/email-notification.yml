@@ -21,13 +21,17 @@ jobs:
           to: niviesh11@gmail.com
           from: GitTask GitHub Actions
           secure: true
+
           body: |
             A change has been made to the GitTask repository.
 
             Repository: ${{ github.repository }}
             Branch: ${{ github.ref_name }}
             Commit: ${{ github.sha }}
+            Commit message: ${{ github.event.head_commit.message }}
             Author: ${{ github.actor }}
 
             View the commit:
             ${{ github.event.head_commit.url }}
+
+
