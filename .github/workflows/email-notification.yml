@@ -10,5 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test repository change
-        run: echo "A change was pushed to GitTask"
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v6
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "GitTask Repository Changed"
+          to: niviesh11@gmail.com
+          from: GitTask GitHub Actions
+          secure: true
+          body: |
+            A change has been made to the GitTask repository.
+
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+
+            View the commit:
+            ${{ github.event.head_commit.url }}
