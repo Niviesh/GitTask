@@ -1,0 +1,14 @@
+name: Repository Change Notification
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test repository change
+        run: echo "A change was pushed to GitTask"
